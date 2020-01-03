@@ -1,118 +1,118 @@
 > * 原文地址：[The Ultimate Guide to Flexbox — Learning Through Examples](https://www.freecodecamp.org/news/the-ultimate-guide-to-flexbox-learning-through-examples-8c90248d4676/)
 > * 原文作者：[Emmanuel Ohans](https://www.freecodecamp.org/news/author/emmanuel/)
-> * 译者：
+> * 译者：sunnysly123
 > * 校对者：
 
 ![The Ultimate Guide to Flexbox — Learning Through Examples](https://cdn-media-1.freecodecamp.org/images/1*9vcCT6S_dFJqR6yed6Vmqw.png)
 
 ![](https://cdn-media-1.freecodecamp.org/images/DDLwRS3Jad5brv0RIH2r5K2YxqcvAa1vBThw)
 
-Note — this is a long read, so if you want, you can download this article and read it offline  [here][1].
+注意 — 这篇文章篇幅较长，你可以在[这里][1]下载文章后离线阅读。
 
-What’s the best way to understand  **Flexbox**? Learn the fundamentals, then build lots of stuff. And that’s exactly what we’re going to do in this article.
+理解 **Flexbox**最好的方式是什么？学好基础，再不断练习。这就是这篇文章要做的事情。
 
-### A few things to note
+### 要注意的几点
 
--   This article was written with intermediate developers in mind, and assumes you already know a bit about Flexbox. But…
--   If you know some CSS, but don’t know Flexbox at all,  [I wrote a comprehensive guide here (free article, 46 minute read)][2].
--   And if you don’t know CSS very well, I recommend taking my  [Complete (practical) Introduction to CSS (paid course with 74 lessons)][3].
--   You don’t have to follow the examples in this article in the order listed here.
--   Flexbox is only a layout technique. Real world projects require more than layouts.
--   When you see a notation such as  `div.ohans`  it refers to a div with a class name of  `ohans`
+-   这篇文章预设你是一名中级开发者，且对Flexbox有点了解。但是。。。
+-   如果你对css有些了解，但是没有接触过Flexbox，[我写了一篇通用指导（免费文章，阅读时间约为46分钟）][2].
+-   如果你对CSS掌握的不是很好，我推荐你阅读 [CSS全面（实用）指南 (74课时的付费课程)][3]。
+-   你不需要遵照这里列出的示例顺序。
+-   Flexbox只是一种布局的技巧。实际项目应用需要更多的布局样式。
+-   当你看到例如 `div.ohans` 的例子，这代表类名是  `ohans`的 div
 
-### Example 1: How to Make a Photo Gallery with Flexbox
+### 例1: 如何用 Flexbox 完成一个影片集
 
-Making photos run in rows and columns with Flexbox is easier than most persons perceive.
+使用 Flexbox 实现横向纵向排列比很多人想象的要简单。
 
-Consider a simple markup, like so:
+例如一个如下的简单标记文本：
 
 ```
 <main class="gallery">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg"></main>
 ```
 
-We have 10 images within a  `main.gallery`.
+`main.gallery` 里有十张图片。
 
-Assume the  `main.gallery`  was styled to cover the available screen.
+我们要用  `main.gallery`  排列在可见屏幕上。
 
 ```
 .gallery {   min-height: 100vh}
 ```
 
-#### A Quick Note on Images
+#### 有关图片的简单提示
 
-By default, images are  `inline-block`  elements. They have a width and height. They will remain on a line except when constrained by size such as the images being too big to fit on a line.
+图片默认是有宽高的  `inline-block`  元素。除非有限定大小，例如图片太大不能排列在一行，否则他们都会排列在一行。
 
-#### The Starting point
+#### 起始点
 
-Putting everything together, the result of all the markup and style above is this:
+所有图片放在一起的显示效果如下：
 
 ![](https://cdn-media-1.freecodecamp.org/images/s2ntfDqrLewl66sGtavdhgQybTyD2JX520r2)
 
-10 images with their width and height declarations intact. They fall unto the next line when appropriate. Obedient lads ;)
+10张宽高不变地排列在一起，合适的时候换行，顺序排放 ;)
 
-Now, get Flexbox on the scene:
+现在，看下Flexbox的效果:
 
 ```
 .gallery {    display: flex }
 ```
 
-At this point, the default behavior of the images has altered. They go from being  `inline-block`  elements to being  `flex-items.`
+在这点上，图片的默认属性已经发生改变。他们从  `inline-block`  布局变成了  `flex-items.`
 
-As a result of the Flexbox context initiated within  `.gallery`, the images will now be squashed unto a single line. Plus, they would stretch along the vertical like so:
+由于  `.gallery`  里的Flexbox布局，里面的图片会被压缩排列在一行内，而且他们会被纵向拉伸称这样：
 
 ![](https://cdn-media-1.freecodecamp.org/images/sEzCWC3d-xoorKjDGf8TMdq6-ZxtOFMQjIST)
 
-The Images now stretch along the vertical, and are squashed unto one line. Nothing’s uglier :(
+图片都被纵向拉伸挤在一行内，不能更丑 :(
 
-This is a result of the Flexbox default behavior:
+这就是Flexbox布局的默认展示方式:
 
-1.  Squash all child elements unto a single line. Do not wrap the elements.
+1.  将所有的子元素压在一行内，不换行。
 
-This is bad for a gallery, so we change this behavior like so:
+这并不适用于图片库，因此我们可以这样改变：
 
 ```
 .gallery {    flex-wrap: wrap}
 ```
 
-This will now wrap the elements and break them unto multiple lines when appropriate.
+这样所有的元素会在合适的时候换行，多行排列。
 
 ![](https://cdn-media-1.freecodecamp.org/images/JGAnqvkIeN-q8vh1beADx0XUrUE6SEZkGQFp)
 
-With the wrap value altered, the images now wrap unto the next line
+因为wrap值的改变，图片都换行排列
 
-2\. The images now wrap unto the next line. But they still  **stretch**  along the vertical. We certainly do  **not**  want that behavior as it distorts the images.
+2\. 现在图片有换行，但是仍然纵向拉伸。我们当然不想要这样扭曲的布局。
 
-The  `stretch`  behavior is due to the default  `align-items`  value on  `flex`  containers.
+  `stretch`  显示是因为  `flex`  里默认的  `align-items`  值。
 
 ```
 align-items: stretch
 ```
 
-Let’s change that:
+我们可以改成这样：
 
 ```
 .gallery {  ...  align-items: flex-start}
 ```
 
-This will keep the images from stretching. They’ll assume their default  `width`  and  `height` values.
+这样图片不会拉伸，而是保持他们默认的宽和高。
 
-They will also align to the start of the vertical axis as seen below:
+如下所示，他们会在纵向保持首部对齐。
 
 ![](https://cdn-media-1.freecodecamp.org/images/02VgeT3SyoxuWFwkqyD1pzEjFzUjMH160mn0)
 
-Now we have images that aren’t distorted. This is pretty much where we began before introducing Flexbox.
+现在图片都是没有扭曲展示，这也很像我们在使用Flexbox之前的效果。
 
-Now we have our Flexbox powered gallery.
+Now we have our Flexbox powered gallery.现在我们就要开始用Flexbox来强大图片集。
 
-#### The Advantage of Using Flexbox
+#### 使用Flexbox的优点
 
-At this point there’s not much advantage to using Flexbox. We have the same look we had before initiating the  **Flexbox**  model.
+此刻Flexbox似乎没展现出什么优势，图片还是像使用  **Flexbox**  之前一样。
 
-Apart from getting a responsive gallery for free, the other advantages of using Flexbox come from the alignment options it brings.
+除了能得到一个免费的响应式图片集外，使用Flexbox的另一个优势就是他带来的对齐选项。
 
-Remember that the flex container,  `.gallery`  assumes the following property values.`flex-direction: row`  `justify-content: flex-start`  and  `align-items: flex-start.`
+还记得flex容器  `.gallery`  设定的样式`flex-direction: row`  `justify-content: flex-start`  和  `align-items: flex-start.`
 
-The layout of the gallery can be switched in an instant by toying with the default values as shown below:
+如下所示，改变默认值，我们就可以立马改变图片库的布局。
 
 ```
 .gallery {   ...   justify-content:center;}
@@ -120,9 +120,9 @@ The layout of the gallery can be switched in an instant by toying with the defau
 
 ![](https://cdn-media-1.freecodecamp.org/images/etSBjIv9EwausQZC8PCe3tdHj0JovaLXkNvs)
 
-The images are now perfectly centered along the horizontal.
+图片在水平上完美居中。
 
-As seen in the image above, this will align the images to the center, along the horizontal:
+如上所示，这会让图片水平居中。
 
 ```
 .gallery {   ...   justify-content:center;   align-items: center;}
@@ -130,31 +130,31 @@ As seen in the image above, this will align the images to the center, along the 
 
 ![](https://cdn-media-1.freecodecamp.org/images/jSx35Bma2fYhAISiEg0B3TcZanxoy0hPOb8D)
 
-Taking steps further, we have the images perfectly aligned to the center (horizontally and vertically)
+再进一步，我们可以让图片完美水平对齐（无论是水平还是垂直）
 
-As seen in the image above, this align the images both horizontally and vertically to the center of  `.gallery`
+如上所示，这可以让图片在  `.gallery` 内水平和垂直都居中。
 
-With Flexbox comes a lot of alignment options. Feel free to toy with some more alignment options as you deem fit.
+你可以通过Flexbox的布局方式随意选择你想要的对齐选项。
 
-You may view the actual Flexbox gallery in this  [CodePen][4].
+你可以通过  [CodePen][4]查看Flexbox图片库的实时布局效果。
 
-### Example 2: How to Build Cards with Flexbox
+### 例2：如何通过Flexbox布局卡片 
 
-Cards have become popular on the internet. Google, Twitter, Pinterest, and it seems, everyone else is moving to cards.
+卡片在网上很流行，无论是Google, Twitter 还是 Pinterest，每个网站都在使用卡片。
 
-A Card is a UI design pattern that groups related information in a flexible-size container. It visually resembles a playing card.
+卡片是一种在大小可变容器内组合相关信息的页面设计方式，视觉上很像一种玩的卡片。
 
-There are many good uses for cards. A common one is the infamous pricing grid.
+使用卡片有很多好的地方，其中一个常用的就是臭名昭著的价格表。
 
 ![](https://cdn-media-1.freecodecamp.org/images/wjb-g2V7hV6IvRbGaDHYmAePhTjwR5ZeekkX)
 
-sample pricing grid mockup
+价格表模型
 
-Let’s build one.
+让我们来建一个。
 
-#### The Markup
+#### 标记
 
-Each card will assume a markup like below:
+我们给每个卡片设定一个如下的标记：
 
 ```
 <section class="card">  <header>  </header>
@@ -164,63 +164,61 @@ Each card will assume a markup like below:
   <ul>    <li></li>    <li></li>    <li></li>  </ul>  <button></button></section>
 ```
 
-There will be at least 3 cards. Wrap the cards in a  `div.cards`
+这里有至少3个卡片，我们把这些卡片包在  `div.cards`里
 
 ```
 <div class="cards"></div>
 ```
 
-Now we’ve got a parent element.
-
-For this example, the parent element has been set up to fill the entire viewport.
+现在已经有了一个父元素。在这个例子中，父元素充满整个视图。
 
 ```
 .cards {   min-height: 100vh}
 ```
 
-#### Set up Flexbox
+#### 建立Flexbox布局
 
-The following code block will initiate a Flexbox formatting context within  `.cards`
+下面的代码块新建了一个在  `.cards` 里面的Flexbox布局样式。
 
 ```
 .cards {  display: flex;  flex-wrap: wrap}
 ```
 
-If you remember the last example,  `flex-wrap`  will allow for the  `flex-items`  to break onto another line.
+如果你还记得上一个例子，  `flex-wrap`  可以让  `flex-items`  换行。
 
-This happens when the child elements cannot fit into the parent element. This is due to the larger computed width size of the combined child elements.
+由于子元素排列需要更大的宽度，所以子元素不能在父元素内排列时就会换行。
 
-Go ahead and give the  `.card`  an initial width.
+接下来我们给  `.card`  元素一个初始宽度。
 
-Using Flexbox:
+使用Flexbox如下布局:
 
 ```
 .card {  flex: 0 0 250px}
 ```
 
-This will set the  `flex-grow`  and  `flex-shrink`  values to  `0`. The  `flex-basis`  value will be set to  `250px`
+这个样式将  `flex-grow`  和  `flex-shrink`  的值设为0，  `flex-basis`  值为  `250px`。
 
-At this point, the cards will be aligned to the start of the page. They will also stretch along the vertical.
+这时，卡片会在页面的起始处对齐，并且垂直延伸。
 
 ![](https://cdn-media-1.freecodecamp.org/images/dkco2Y-Dru2WyMonIq51riqbYtjVr2Zn3E4T)
 
-cards aligned to the start of the page
+卡片首部对齐
 
-In some cases this may be ideal for your use case. But for most cases, it won’t.
+这有时可能满足你的使用需求，但大部分情况下，都不行。
 
-#### The Default Behavior of Flex Containers
+#### Flex容器的默认设置
 
-The result above is due to the default behavior of flex containers.
+上面的布局是由于flex容器的默认布局设置。
 
-The cards begin at the start of the page on the  `top left`  because  `justify-content`  is set to the value  `flex-start`  .
+卡片在页面内靠顶部左边对齐，因为  `justify-content`  的值默认为  `flex-start`  。
 
-Also, the cards stretch to fill the entire height of the parent element because  `align-items`  is set to  `stretch`  by default.
+同时，卡片垂直拉伸充满整个父元素的高度，因为  `align-items`  的默认值是  `stretch`  。
 
-#### Altering the default values
+#### 改变默认值
 
-We can achieve pretty impressive results by changing the default values that Flexbox offers.
+我们可以通过改变Flexbox提供的默认值来达到更好的效果。
 
-See below:
+看下面几个例子：
 
 ![](https://cdn-media-1.freecodecamp.org/images/hq7D1wJINa5-DC77TMt4e517xOAG6C46yKZ3)
 
@@ -234,90 +232,90 @@ align-items: flex-end; justify-content: center
 
 align-items: center; justify-content: center
 
-To view the final project, see this  [CodePen][5].
+你可以在[CodePen][5]看最终的效果。
 
-### Example 3: How to Build Grids with Flexbox
+### 例3：如何通过Flexbox创建网格布局
 
-Entire CSS frameworks are built on the concept to be discussed in this example. It is pretty important stuff.
+在这个例子中，我们要探讨整体的CSS 框架概念，这是很重要的一点。
 
-#### What is a Grid?
+#### 什么是网格布局？
 
-A grid is a series of intersecting straight vertical and horizontal guide lines used to structure content.
+网格是用来构建内容的一系列水平垂直相交引导线。
 
 ![](https://cdn-media-1.freecodecamp.org/images/06AK1XPmRT2w0zMezFzS2W50a8-xxwmujZEb)
 
-a series of intersecting straight (vertical, horizontal) guide lines
+一系列水平垂直相交引导线
 
-If you’re familiar with CSS frameworks such as Bootstrap, then you sure have used grids before now.
+如果你对Bootstrap这样的CSS框架比较熟悉，那可以确定之前你有使用过网格布局。
 
-Your mileage may differ, but we will consider varying grid types in this example.
+你的目标可能不同，但在这个例子中我们会考虑不同的网格布局类型。
 
-Let’s start with the first one,  **basic grids**.
+我们先来看第一种，**basic grids**
 
-#### Basic Grids
+#### 基本网格布局
 
 ![](https://cdn-media-1.freecodecamp.org/images/emC8Q5HRNl1dVcCGxvvheVNZYpQ0Ce05-MMc)
 
-A set of basic grids each having equally spaced columns
+每套基础的网格都有同样大小的列
 
-These are grids with the following characteristics:
+这些网格有以下特点：
 
--   The grid cells should be spaced equally and expand to fit the entire row.
--   The grid cells should be of equal heights.
+-   网格单元格要平均布局并充满整行。
+-   单元格高度一致。
 
-It is easy to achieve this with Flexbox. Consider the markup below:
+使用Flexbox很容易实现这个效果，看下面这个标记文本：
 
 ```
 <div class="row">  <div class="row_cell">1</div></div>
 ```
 
-Each  `.row`  will be its own flex container.
+每个  `.row`  都是自己的flex容器。
 
-Each element within  `.row`  then becomes a flex item. All flex items distribute evenly across the row.
+  `.row`  里的每个元素也就是flex元素，所有的flex元素平均分布在一行中。
 
-By design, it shouldn’t matter whether we have 3 child elements
+根据设计，可能有3个子元素
 
 ```
 <div class="row">  <div class="row_cell">1/3</div>  <div class="row_cell">1/3</div>  <div class="row_cell">1/3</div></div>
 ```
 
-Or 6 child elements
+或是6个子元素。
 
 ```
 <div class="row">  <div class="row_cell">1/6</div>  <div class="row_cell">1/6</div>  <div class="row_cell">1/6</div>  <div class="row_cell">1/6</div>  <div class="row_cell">1/6</div>  <div class="row_cell">1/6</div></div>
 ```
 
-Or 12 elements
+也有可能是12个
 
 ```
 <div class="row">  <div class="row_cell">1/12</div>  <div class="row_cell">1/12</div>  <div class="row_cell">1/12</div>  <div class="row_cell">1/12</div>  <div class="row_cell">1/12</div>  <div class="row_cell">1/12</div>  <div class="row_cell">1/12</div>  <div class="row_cell">1/12</div>  <div class="row_cell">1/12</div>  <div class="row_cell">1/12</div>  <div class="row_cell">1/12</div>  <div class="row_cell">1/12</div></div>
 ```
 
-#### The Solution
+#### 解决方案
 
-There are just two steps to doing this.
+达到这个效果只需要两步：
 
-1.  Initiate a Flexbox formatting context:
+1.  设置一个初始的Flexbox布局：
 
 ```
 .row {   display: flex;}
 ```
 
-2\. Have each  `flex-item`  expand to fit the entire row in equal proportions:
+2\. 扩大每个  `flex-item`  元素，让他们以相同比例均匀的布满整行：
 
 ```
 .row_cell {   flex: 1}
 ```
 
-And that’s it.
+就是这样
 
-#### The Solution Explained.
+#### 方案解释。
 
 ```
 flex: 1
 ```
 
-`flex`  is a shorthand property name for setting three distinct Flexbox properties, the  `flex-grow`  ,  `flex-shrink`  and  `flex-basis`  properties, in the order stated.
+`flex`  是  `flex-grow`  、  `flex-shrink`  和  `flex-basis`  三个不同Flexbox属性的缩写。
 
 `flex: 1`  only has the value  `1`  set. This value is attributed to the  `flex-grow` property.
 

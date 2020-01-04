@@ -317,69 +317,69 @@ flex: 1
 
 `flex`  是  `flex-grow`  、  `flex-shrink`  和  `flex-basis`  三个不同Flexbox属性的缩写。
 
-`flex: 1`  only has the value  `1`  set. This value is attributed to the  `flex-grow` property.
+`flex: 1`  只有  `1`  的值，这个值代表的是`flex-grow` 属性。
 
-The  `flex-shrink`  and  `flex-basis`  properties will be set to  `1`  and  `0`.
+而  `flex-shrink`  和  `flex-basis`  则分别设置为 `1`  和  `0`。
 
 ```
 flex: 1  === flex: 1 1 0
 ```
 
-#### Grid Cells with Specific Sizes
+#### 有具体数值的网格元素
 
-Sometimes what you want isn’t a grid row of equal cells.
+有时候你需要的效果并不是同样大小的水平网格布局。
 
-You may want cells that are double the other cells, or any fraction for that matter.
+你可能想要一个元素是其他的两倍，或者一半。
 
 ![](https://cdn-media-1.freecodecamp.org/images/CKD3-ZUoxNAOJ-bp-cUZ0XcxnnMB1OvvA2yX)
 
-grid of row cells that are 2x or 3x the other cells.
+水平网格布局中的元素是其他的两倍或3倍。
 
-The solution is pretty simple.
+实现方式很简单。
 
-To these specific grid cells, add a modifier class like so:
+对于这些明确的网格元素，只需要加一个这样的修饰符类：
 
 ```
 .row_cell--2 {   flex: 2}
 ```
 
-Have the class included in the markup. See the first child  `div`  in the markup below:
+加上这个类，可以看到第一个  `div`  子元素代码如下：
 
 ```
 <div class="row">  <div class="row_cell row_cell--2">2x</div>  <div class="row_cell">1/3</div>  <div class="row_cell">1/3</div></div>
 ```
 
-The cell with the class  `.row__cell--2`  will be 2 times the default cells.
+加上  `.row__cell--2`  类名的元素会是其他默认元素的两倍大小。
 
-For a cell that takes up 3 times the available space:
+占可用空间3倍的元素：
 
 `.row_cell--3 {`  
 `flex: 3`  
 `}`
 
-#### Grid Cells with Specific Alignments
+#### 有确定对齐方式的网格元素
 
-Thanks to Flexbox, each cell doesn’t have to tied to a certain alignment value. You may specify the specific alignment for any cell.
+多亏了Flexbox布局，我们不需要给每个元素设置特定的对齐值。你可以给任何一个元素设定不同的对齐方式。
 
-To do so, use modifier classes like this:
+通过下面的修饰符类，可以达到这样的效果：
 
 ```
 .row_cell--top {  align-self: flex-start}
 ```
 
-This will align the specific cell to the top of the  `row`.
+这可以让特定的元素在  `row` 内靠顶部对齐。
 
 ![](https://cdn-media-1.freecodecamp.org/images/rSpBVp7JoobnRoc0-Vsb6CjfzyKxO9c5pUwq)
 
-applying the .row\_cell — top class will align the specific cell to the top of the  `row`
+应用.row\_cell — top 类可以让特定的元素在  `row`  内靠顶部对齐。
 
-You must have also added the class to the specific cell in the markup. See the first child  `div`  in the markup below:
+你也需要在标记文本中给特定元素加上这个类。看文本中第一个  `div`  子元素的写法：
 
 ```
 <div class="row">  <div class="row_cell row_cell--top"></div>  <div class="row_cell"></div>  <div class="row_cell"></div></div>
 ```
 
-Below are the other alignment options available:
+下面是其他可选的对齐方式：
 
 ```
 .row_cell--bottom {  align-self: flex-end}
@@ -387,7 +387,7 @@ Below are the other alignment options available:
 
 ![](https://cdn-media-1.freecodecamp.org/images/V76ETVyzFX4E7HLQ3MLr03LSH6GkYnvjEzNa)
 
-applying the .row\_cell — bottom class will align the specific cell to the bottom of the  `row`
+给特定的元素加上.row\_cell — bottom类会让它在  `row`  内靠底部对齐。
 
 ```
 .row_cell--center {  align-self: center}
@@ -395,13 +395,13 @@ applying the .row\_cell — bottom class will align the specific cell to the bot
 
 ![](https://cdn-media-1.freecodecamp.org/images/N-KfRijROiUyGtSj6RTAZmZjNZZ5A3Djf2NA)
 
-applying the .row\_cell — center class will align the specific cell to the center of the  `row`
+给特定的元素加上.row\_cell — center类会让它在  `row`  内居中对齐。
 
-#### Overall Alignment within the Rows
+#### 整行对齐
 
-As specific cells can be aligned, so can the  **entire**  child elements within the row.
+  **entire**  整行的的子元素也可以像特定的元素一样对齐。
 
-To do this, use a modifier class like so:
+使用下面的修饰符类达到这样的效果：
 
 ```
 .row--top {   align-items: flex-start}
@@ -409,15 +409,15 @@ To do this, use a modifier class like so:
 
 ![](https://cdn-media-1.freecodecamp.org/images/le3bablkysAG-j-JEQQdHyBvvjiCbIfZP2Bs)
 
-a row with all three cells aligned to the top of the row.
+一行上的三个元素都靠顶部对齐。
 
-It is important to note that the modifier class,  `.row--top`  must be added to the  `row`  or the parent  `flex-container`
+需要注意的一个重点是，  `.row--top`  一定要被加在  `row`  或是父元素  `flex-container`  上。
 
 ```
 <div class="row row--top">  <div class="row_cell"></div>  <div class="row_cell"></div>  <div class="row_cell"></div></div>
 ```
 
-The other alignment options may be seen below:
+其他的对齐选项见下：
 
 ```
 .row--center {   align-items: center}
@@ -425,7 +425,7 @@ The other alignment options may be seen below:
 
 ![](https://cdn-media-1.freecodecamp.org/images/NVv3xZxxaIbyPHDJTxp5LdcG-Be0wolyXiCb)
 
-a row with all three cells aligned to the center of the row.
+整行的三个元素都居中对齐。
 
 ```
 .row--bottom {   align-items: flex-end}
@@ -433,43 +433,43 @@ a row with all three cells aligned to the center of the row.
 
 ![](https://cdn-media-1.freecodecamp.org/images/OsI1AJj-F4BMIJQAMN82bY6MXqTxvwmZkw3J)
 
-a row with all three cells aligned to the center of the row.
+整行的三个元素都靠底部对齐
 
-#### Nested Grids
+#### 巢状网格
 
-Without doing anything in particular, these  `rows`  can be nested within themselves.
+没有特殊的设置，这些  `rows`  可以在内部巢状布局。
 
 ![](https://cdn-media-1.freecodecamp.org/images/2eyhYZJlDdZXJkiLuwGYSoB83KKPxnfgfjCg)
 
-A row with two cells, one 2x the other. Within the larger cell, a row of three centered cells has been nested.
+一行内有两个元素，一个是另一个的两倍大小。在较大的元素里，一行三个元素居中巢状排列。
 
-You may view the final grids  [created here][6].
+你可以在  [created here][6]查看最终的布局效果。
 
-#### Even More Grids
+#### 更多网格布局
 
-While you can get fancy building grids with Flexbox vertical grids and even more complex configurations, use the best tool for the job. Learn, master and use the  [CSS Grid Layout][7]. It is the ultimate CSS solution to Grids.
+当你可以用Flexbox垂直网格甚至更复杂的参数实现好看的网格构造时，就可以把这个最好的工具用于工作。学习，掌握然后使用  [CSS Grid Layout][7]，这是CSS网格布局中最基本的解决方案。
 
-### Example 4: How to Build Website Layouts with Flexbox
+### 例4：如何使用Flexbox构建网站布局
 
-The community generally frowns upon using Flexbox for full blown web layouts.
+社区通常不喜欢整个网站布局都使用Flexbox。
 
-While I agree with this, I also think in certain cases you can get away with it.
+虽然我赞同这个看法，但是我也认为特定的情况下你可以不用考虑这么多。
 
-The single most important advice I can give here would be:
+我能给到最重要的一点建议是：
 
-> **_Use Flexbox where it makes sense_**
+> **_在你需要的时候使用Flexbox布局_**
 
-I’ll explain that statement in the following example.
+这点我会在下面的例子中解释。
 
-#### The Holy Grail Layout
+#### 圣杯布局
 
-What better website layout to build than the infamous “**holy grail**”?
+比臭名昭著的 “**holy grail**”更好的网站布局方式是什么呢？
 
 ![](https://cdn-media-1.freecodecamp.org/images/9HvLwuqluns72rMdkVL4SMf5pyPQMxFb9mSi)
 
-The holy grail layout — header, footer and 3 other content containers.
+圣杯布局 — 头部, 页脚和3个其他的容器。
 
-There are 2 ways to attempt building this layout with Flexbox.
+用Flexbox有两种方式可以实现这种布局。
 
 The first is to have the layout built with Flexbox. Place the  `header`,  `footer`,  `nav`,  `article`  and  `aside`  all in one  `flex-container`.
 

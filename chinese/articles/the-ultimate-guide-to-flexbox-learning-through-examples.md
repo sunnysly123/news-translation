@@ -471,71 +471,71 @@ flex: 1  === flex: 1 1 0
 
 用Flexbox有两种方式可以实现这种布局。
 
-The first is to have the layout built with Flexbox. Place the  `header`,  `footer`,  `nav`,  `article`  and  `aside`  all in one  `flex-container`.
+第一种是用Flexbox来实现布局。把  `header`,  `footer`,  `nav`,  `article`  和  `aside`  都放在  `flex-container` 容器里。
 
-Let’s begin with that.
+我们开始。
 
-#### The Markup
+#### 标记语言
 
-Consider the basic markup below:
+看下下面这个基本的标记语言：
 
 ```
 <body>  <header>Header</header>  <main>    <article>Article</article>    <nav>Nav</nav>    <aside>Aside</aside>  </main>  <footer>Footer</footer></body>
 ```
 
-Among others, there is a particular rule the holy grail adheres to. This rule has inspired the markup above:
+其中，圣杯布局遵循了一个特殊的规则，Among others, there is a particular rule the holy grail adheres to. 这个规则inspired上面的标记语言：
 
-The center column,  `article`  should appear first in the markup, before the two sidebars,  `nav`  and  `aside`.
+中间的那列  `article`  应该在 `nav`  和  `aside`两个侧边栏之前显示出来。
 
 ![](https://cdn-media-1.freecodecamp.org/images/YDZbT2gN-JVcBRbvAkXYasm3Hqo-Q7VtxbU9)
 
-“<article></article>” appears first in the markup, but is centered in the layout.
+“<article></article>” 居中布局且先显示在页面上。
 
-#### Initiate the Flexbox Formatting Context
+#### 初始化Flexbox格式化上下文
 
 ```
 body {   display: flex}
 ```
 
-Because the child elements should stack from top to bottom, the default direction of the Flexbox must be changed.
+因为子元素应该从顶部到底部布局，所以Flexbox的默认方向要改变。
 
 ```
 body { ... flex-direction: column}
 ```
 
-**1**. `header`  and  `footer`  should have a fixed width.
+**1**. `header`  和  `footer`  要有固定的宽度
 
 ```
 header,footer {  width: 20vh /*you can use pixels e.g. 200px*/}
 ```
 
-**2.**`main`  must be made to fill the available remaining space within the  `flex-container`
+**2.**`main`  要填满  `flex-container`  中剩下的部分。
 
 ```
 main {   flex: 1}
 ```
 
-Assuming you didn’t forget,  `flex: 1`  is equivalent to  `flex-grow: 1`  ,  `flex-shrink: 1`and  `flex-basis: 0`
+你一定没忘记，  `flex: 1`  代表  `flex-grow: 1`  ,  `flex-shrink: 1`和  `flex-basis: 0`。
 
 ![](https://cdn-media-1.freecodecamp.org/images/eBj3j7v59T5PYdH8sBCadGevCVyOlPfuMIqR)
 
-This will cause  `main`  to “grow” and contain the available remaining space.
+这会让  `main`  变大填满剩下的空间。
 
-At this point, we need to take care of the contents within  `main`  which are  `article`,  `nav`and  `aside`.
+此刻，我们要开始考虑  `main`  中的  `article`,  `nav`和  `aside`三个部分。
 
-Set up  `main`  as a  `flex-container`  :
+把  `main`  设成一个  `flex-container`  ：
 
 ```
 main {  display: flex}
 ```
 
-Have the  `nav`  and  `aside`  take up fixed widths:
+给  `nav`  和  `aside`  以固定的宽度：
 
 ```
 nav,aside {  width: 20vw}
 ```
 
-Ensure that  `article`  takes up the remaining available space:
+然后确保  `article`  填满剩下的空间：
 
 ```
 article {   flex: 1}
@@ -543,11 +543,11 @@ article {   flex: 1}
 
 ![](https://cdn-media-1.freecodecamp.org/images/3--f-KqkBdvx8jv6n9mhmA354cP7OvgS4Ayz)
 
-`"article"`  now takes up the remaining available space
+`"article"`  现在填满剩下的空间
 
-There’s just one more thing to do now.
+还需要做一件事。
 
-Re-order the  `flex-items`  so  `nav`  is displayed first:
+把  `flex-items`  重新排序这样  `nav`  会展示在第一位：
 
 ```
 nav {  order: -1}
@@ -555,83 +555,82 @@ nav {  order: -1}
 
 ![](https://cdn-media-1.freecodecamp.org/images/rN1l8s8aO44ecL8RBUIG824WpUNHBIyl5iLo)
 
-The final result.  [https://codepen.io/ohansemmanuel/full/brzJZz/][8]
+最终效果  [https://codepen.io/ohansemmanuel/full/brzJZz/][8]
 
-The  `order`  property is used to re-order the position of  `flex-items`.
+  `order`  属性用来重新排序  `flex-items`的位置。
 
-All  `flex-items`  within a container will be displayed in  **increasing** `order`  values. The  `flex-item`  with the lowest  `order`  values appear first.
+容器中所有  `flex-items`  都会以  **增大的** `order`  值排列。 其中  `flex-item`  里`order`  值最小的会排列在最前面。
+所有的  `flex-items`  元素默认  `order`  值都是  `0`。
 
-All  `flex-items`  have a default  `order`  value of  `0`.
+#### 圣杯布局 (另一种布局方式)
 
-#### The Holy Grail Layout (another solution)
+以往的方式是把  `flex-container`  作为一个整体的容器。这个布局很依赖Flexbox。
 
-The previous solution used a  `flex-container`  as the overall container. The layout is heavily dependent on Flexbox.
-
-Let’s see a more “sane” approach. Take a look at the supposed final result again:
+我们来了解一种更为“理智”的方法。再来看下理想的效果：
 
 ![](https://cdn-media-1.freecodecamp.org/images/UIy61i1OzIjdddu2W5i9NvL74JXjY5sclt8i)
 
-The holy grail layout
+圣杯布局
 
-`header`  and  `footer`  could be treated as block elements. Without any intervention, they will fill up the width of their containing element, and stack from top to bottom.
+`header`  和  `footer`  可以被当做块状元素。 在没有任何干预的情况下，他们会在从顶部到底部，填满父级元素。
 
 ```
 <body>  <header>Header</header>  <main>    <article>Article</article>    <nav>Nav</nav>    <aside>Aside</aside>  </main>  <footer>Footer</footer></body>
 ```
 
-With this approach, the only  `flex-container`  needed would be  `main`.
+使用这种方法，唯一需要  `flex-container`  的就是  `main`元素。
 
-The singular challenge with this approach is that you have to compute the height of  `main`  yourself.  `main`  should fill the available space besides the space taken up by the  `header`and  `footer.`
+使用这个方法有个缺点就是你要自己计算  `main`  的高度。  `main`  应该填满除  `header`和  `footer.`外的空间。
 
 ```
 main {  height: calc(100vh - 40vh);}
 ```
 
-Consider the code block above. It uses the CSS  `calc`  function to compute the height of  `main.`
+上面的代码块使用CSS中的  `calc`  来计算  `main.`的高度。
 
-Whatever your mileage, the height of  `main`  must be equal to  `calc(100vh — height of header — height of footer ).`
+不管怎么计算，  `main`  的高度都要等于  `calc(100vh — height of header — height of footer ).`
 
-As in the previous solution, you must have given  `header`  and  `footer`  a fixed height. Then go ahead and treat  `main`  the same way as in the previous solution.
+在以往的方法汇总，你都给  `header`  和  `footer`  设定了一个固定的高度，接下来再通过同样的方法计算  `main`  的高度。
 
-You may view the  [actual results here][9].
+你可以在  [actual results here][9] 中查看最终效果。
 
-#### 2 column website layouts
+#### 两列网页布局
 
-Two column layouts are pretty common. They are also easily achieved using Flexbox.
+两列布局很常见，可以用Flexbox轻松实现。
 
 ![](https://cdn-media-1.freecodecamp.org/images/Mk-G8NgfEsSoMlzbafucKr5IUHOiSAcr4cEp)
 
-2 column layout with a sidebar and main content area.
+边栏和主内容的两列布局。
 
-Consider the markup below:
+看下以下代码：
 
 ```
 <body>  <aside>sidebar</aside>  <main>main</main></body>
 ```
 
-Initiate the Flexbox formatting context:
+先初始化一个Flexbox样式
 
 ```
 body {  display: flex;}
 ```
 
-Give  `aside`  a fixed width:
+给  `aside`  一个固定的宽度：
 
 ```
 aside {   width: 20vw}
 ```
 
-Finally, ensure that  `main`  fills up the remaining available space:
+最后，保证  `main`  填满剩下的空间：
 
 ```
 main {  flex: 1}
 ```
 
-That’s pretty much all there is to it.
+就是这样了。
 
-### Example 5: Media Objects with Flexbox
+### 例5：媒体对象使用Flexbox
 
-Media Objects are everywhere. From tweets to Facebook posts, they seem to be the go to choice for most UI designs.
+媒体对象随处可见。从tweets 到 Facebook, 他们似乎是大部分UI设计的选择。
 
 ![](https://cdn-media-1.freecodecamp.org/images/hoOVQQcGFJ-EivoJRCqOTXynRzq88ye3zzE6)
 

@@ -630,27 +630,27 @@ main {  flex: 1}
 
 ### 例5：媒体对象使用Flexbox
 
-媒体对象随处可见。从tweets 到 Facebook, 他们似乎是大部分UI设计的选择。
+媒体对象随处可见。从tweets 到 Facebook上的发贴, 他们似乎是大部分UI设计的选择。
 
 ![](https://cdn-media-1.freecodecamp.org/images/hoOVQQcGFJ-EivoJRCqOTXynRzq88ye3zzE6)
 
-Sample Tweet and Facebook post
+Tweet 和 Facebook 上发布的例子
 
-Consider the markup below:
+看下下面这个标记语言：
 
 ```
 <div class="media">  <img class="media-object" src="/pic.jpg">  <div class="media-body">    <h3 class="media-heading"> Header </h3>    <p></p>  </div></div>
 ```
 
-As you have guessed,  `.media`  will establish the Flexbox formatting context:
+你应该已经猜到了，  `.media`  会使用Flexbox布局：
 
 ```
 .media {   display: flex}
 ```
 
-By default, the  `flex-items`  of a  `container`  are stretched along the vertical to fill the available height within the  `flex-container`.
+`container`  中的  `flex-items` 默认是在  `flex-container` 中垂直拉伸，填满可用高度。
 
-Make sure the  `.media-body`  takes up all the remaining available space:
+确保  `.media-body`  填满剩下的空间：
 
 ```
 .media-body {   flex: 1}
@@ -658,9 +658,9 @@ Make sure the  `.media-body`  takes up all the remaining available space:
 
 ![](https://cdn-media-1.freecodecamp.org/images/zJRJJ8NeVDHI1FNdnsKF5mpeRXjabOb-zVk9)
 
-The box on the left stretches to fit the available screen. The media body takes up the remaining horizontal space within the media object (white)
+左边的盒子拉伸填满可用屏幕空间。媒体主体在媒体对象（白色部分）内横向填满剩下的空间。
 
-Let’s fix the stretched box.
+我们来调整下拉伸的盒子模型。
 
 ```
 .media {  ...  align-items: flex-start}
@@ -668,175 +668,174 @@ Let’s fix the stretched box.
 
 ![](https://cdn-media-1.freecodecamp.org/images/hkcBJNNimRRArL6iPiDoFN3UdSJSHdRazWlw)
 
-The flex items are now aligned to the start of the media object. The image now takes it default’s size. No weird stretching :)
+弹性项目在媒体对象中从起点对齐。现在图片保持默认大小，没有被奇怪地拉伸 :)
 
-And that’s it.
+就是这样。
 
-#### A flipped Media Object
-
+#### 杂志媒体对象
+，
 ![](https://cdn-media-1.freecodecamp.org/images/GL7OTu019Ov2HtElcXKhObmhreC86yEDpKK0)
 
-A flipped media object has the image on the other side (right) of the media object
+杂志媒体对象是图片在媒体对象的另一边（右边）。
 
-You do not have the change the  `html`  source order to create a flipped media object.
+创建杂志媒体对象不需要改变  `html`  元素的顺序。
 
-Just re-order the  `flex-item`s like so:
+只需要给弹性项目像这样重新排序：
 
 ```
 .media-object {   order: 1}
 ```
 
-This will have the image displayed after the  `.media-body`  and  `media-heading`
+这样图片就会排列在  `.media-body`  和  `media-heading`之后。
 
-#### A Nested Media Object
+#### 巢状媒体对象
 
-You may even go on to nest the Media object. Without changing any of the CSS styles we have written.
-
+你甚至可以不改变已有的CSS样式来继续用巢状布局媒体对象。
 ```
 <div class="media">  <img class="media-object" src="/pic.jpg">  <div class="media-body">    <h3 class="media-heading"> Header </h3>    <p></p>        <!--nested-->    <div class="media">    <img class="media-object" src="/pic.jpg">    <div class="media-body">        <h3 class="media-heading"> Header </h3>        <p></p>    </div>    </div><!--end nested-->  </div> </div>
 ```
 
-It works!
+有效果了！
 
 ![](https://cdn-media-1.freecodecamp.org/images/cH3o4d2UTkqB1qWCqymnvLjyGpmJ3mmEq-Ro)
 
-Media objects nested within media objects.
+媒体对象在其中巢状布局。
 
-#### A Unicode Media Object
+#### 字符码媒体对象
 
-It appears we are not restricted to just images.
+我们不用拘泥于图片。
 
-Without changing any of the CSS styles written, you can have a unicode represent the image.
+在不改变已经写好的CSS样式情况下，你可以用字符码来代替图片。
 
 ```
 <div class="media">  <div class="media-object">?</div>  <div class="media-body">    <h3 class="media-heading"> Header </h3>    <p></p>  </div></div>
 ```
 
-I have snugged in an emoji there.
+我在那里放了一个 emoji 表情。
 
 ![](https://cdn-media-1.freecodecamp.org/images/i5nrdZwTbOz3vGgZZUAwyqaG9GZEzWJSmh8i)
 
-Media object with emoji support.
+带有 emoji 表情的媒体对象
 
-Taking away the  `img`  and replacing it with a  `div`  containing the desired unicode yields the output above.You may grab some more emoji unicodes  [here][10].
+上面用一个包含适当表情的编码来代替  `img`  。你可以在[这里][10]获取更多的emoji表情。
 
-#### An HTML Entity Media Object
+#### HTML实体媒体对象
 
-You may have also use  [html entities][11]  as seen below.
+你也可以使用如下的  [html实体][11] 。
 
 ```
 <div class="media">  <div class="media-object">☎</div>  <div class="media-body">    <h3 class="media-heading"> Header </h3>    <p></p>  </div></div>
 ```
 
-The html entity used in this example is  `☎`  and you may see the result below.
+这里使用的html实体是  `☎`  ，效果如下：
 
 ![](https://cdn-media-1.freecodecamp.org/images/ssilgIfm3znqoCXzkmUXSnOuvziC5MauRQ0h)
 
-html entity, ☎
+html实体, ☎
 
-You can view the result of these examples in this  [CodePen][12].
+你可以在  [CodePen][12]查看这些例子的效果。
 
-### Example 6: How to Build Form Elements with Flexbox
+### 例6：如何使用Flexbox建立表格元素
 
-It is difficult to find any website that does not have a form or two these days.
+现在很难找到没有一两个表格的网站了。
 
 ![](https://cdn-media-1.freecodecamp.org/images/h8nCEyfprhm-MuBBUjW-vpd7W2LY6L2tdmYg)
 
-form inputs appended and prepended with other elements
+表格输入框前后加其他元素
 
-Consider the markup below:
+看下面这段标识文本：
 
 ```
 <form class="form">  <input class="form__field">  <button class="form__item">…</button></form><form class="form">  <span class="form__item">…</span>  <input class="form__field"></form><form class="form">  <span class="form__item">…</span>  <input class="form__field">  <button class="form__item">…</button></form>
 ```
 
-This example shows the combination of aligning input fields with buttons or spans of text. The solution again is quite easy with Flexbox.
+这个例子展示了输入框与按钮或是文字的结合，我们还是可以用Flexbox轻松解决。
 
-Initiate the Flexbox formatting context:
+首先初始化一个Flexbox格式文本：
 
 ```
 .form {  display: flex}
 ```
 
-Ensure the input field takes up the available space:
+确保输入框填满可用空间：
 
 ```
 .form__field {   flex: 1}
 ```
 
-Finally, you may style the appended or prepended texts and buttons whichever way you seem fit.
+最后，你可以按照你喜欢的方式在前后放入文字或者按钮。
 
 ```
 .form__item {  ... }
 ```
 
-You may view the complete result of this example in this  [CodePen][13].
+你可以在  [CodePen][13]里看到这个例子的完整效果。
 
-### Example 7: How to Build a Mobile App Layout with Flexbox
+### 例7：如何使用Flexbox来创建一个手机App的布局
 
-In this example, I will walk you the process the mobile app layout below:
+在这个例子中，我会和你一起来打造一个如下的手机应用布局：
 
 ![](https://cdn-media-1.freecodecamp.org/images/FDxWh9vQBhjQ2L6pSyb2w4QuqJvIjjuXElFF)
 
-The mobile app layout we will build with Flexbox
+我们将通过Flexbox建立的手机应用布局
 
-However, this example is different.
+然而这个例子有点不同。
 
-I will explain the process of building the mobile layout in pseudo code, and you’ll go ahead to build it.
+我会解释用虚拟码建立手机布局的构成，你可以践行下去。
 
-This will be a form of practice to get your hands  **wet**.
+这是一个让你 **熟练** 双手的尝试。
 
-#### Step 1
+#### 第一步
 
-Strip the layout off the iPhone, and we have this:
+剥离出iPhone的布局，我们得到下面这个：
 
 ![](https://cdn-media-1.freecodecamp.org/images/cH4ifH1HxdWH9M7IpSEphw9dz7op6WJ7KM8v)
 
-The barebones layout
+间接布局
 
-#### Step 2
+#### 第二步
 
-Define the containing body as a  `flex-container`
+将主体定义成一个  `flex-container`
 
 ![](https://cdn-media-1.freecodecamp.org/images/gGlfDGRg8mSHNpD-PqZGNI9JnIzTCQiSOWrb)
 
-Initiate the Flexbox formatting context as a flex container.
+将格式化文本初始化成一个弹性容器。
 
-#### Step 3
+#### 第三步
 
-By default, the  `flex-direction`  of a  `flex-container`  is set to  `row`. In this case, change it to  `column`  .
+`flex-container`  默认的  `flex-direction`  属性是  `row`。这个例子中，要变成  `column`  。
 
 ![](https://cdn-media-1.freecodecamp.org/images/C1KEFWls3---EMGS2nEiLh8pXnk6a2YOH7x0)
 
-Change the default flex direction to have 3 child elements aka  `flex-items`
+改变3个子元素也就是  `flex-items`的默认布局方向。
 
-#### Step 4
+#### 第四步
 
-Give Item 1 and 3 fixed heights such as  `height: 50px.`
+给元素1和元素3一个固定的高度  `height: 50px.`
 
-#### Step 5
+#### 第五步
 
-Item 2 must have a height that fills up the available space. Use  `flex-grow`  or the  `flex`shorthand  `flex: 1.`
+元素2要有一个填满可用空间的高度。使用`flex-grow`  或是简写的  `flex`写法 `flex: 1.` 。
 
-#### Step 6
+#### 第六步
 
-Finally, treat each block of content as a Media Object as seen in an earlier example.
+最后，像之前的例子一样，把每个块状元素当成一个媒体对象。
 
 ![](https://cdn-media-1.freecodecamp.org/images/ZD4lqIbYDidmyyCu-lGXi9QXpKjaX7eOUScN)
 
-Treat the blocks of content as media objects.
+把内容块当成媒体对象。
 
-Follow the six steps above to successfully build the mobile app layout successfully.
+按照上面的步骤可以成功地建立一个手机应用布局。
 
-### Want to become Pro?
+### 想要更专业？
 
-Download my free CSS Grid cheat sheet, and also get two quality interactive Flexbox courses for free!
+免费下载我的CSS网格布局参考手册，还可以免费获得两节优质的响应式Flexbox课程！
 
 ![](https://cdn-media-1.freecodecamp.org/images/Hisu3Q2Yz70DyjZSPfJ3Dr0gnZ9eB38g152g)
 
-[Get the Free CSS Grid Cheat sheet + Two Quality Flexbox Courses for free!][14]
+[点击免费获得免费的CSS网格布局手册 + 两节优质的课程！][14]
 
-[Get them now][15]
+[现在去领][15]
 
   
 

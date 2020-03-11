@@ -7,24 +7,24 @@
 
 ![](https://cdn-media-1.freecodecamp.org/images/DDLwRS3Jad5brv0RIH2r5K2YxqcvAa1vBThw)
 
-注意 — 这篇文章篇幅较长，你可以在[这里][1]下载文章后离线阅读。
+注意 — 这篇文章篇幅较长，如果需要的话，你可以在[这里][1]下载文章后离线阅读。
 
-理解 **Flexbox**最好的方式是什么？学好基础，再不断练习。这就是这篇文章要做的事情。
+理解 **Flexbox**最好的方式是什么？学好基础，再大量练习。这正是我们要在这篇文章中做的事情。
 
 ### 要注意的几点
 
--   这篇文章预设你是一名中级开发者，且对Flexbox有点了解。但是。。。
--   如果你对css有些了解，但是没有接触过Flexbox，[我写了一篇通用指导（免费文章，阅读时间约为46分钟）][2].
+-   这篇文章预设你是一名中级开发者，并且对Flexbox有点了解。但是。。。
+-   如果你对css有些了解，但是完全不知道Flexbox，[我写了一篇通用指导（免费文章，阅读时间约为46分钟）][2].
 -   如果你对CSS掌握的不是很好，我推荐你阅读 [CSS全面（实用）指南 (74课时的付费课程)][3]。
 -   你不需要遵照这里列出的示例顺序。
 -   Flexbox只是一种布局的技巧。实际项目应用需要更多的布局样式。
 -   当你看到例如 `div.ohans` 的例子，这代表类名是  `ohans`的 div
 
-### 例1: 如何用 Flexbox 完成一个影片集
+### 例1: 如何用 Flexbox 制作一个影片集
 
-使用 Flexbox 实现横向纵向排列比很多人想象的要简单。
+使用 Flexbox 实现横向纵向排列比大多数人想象的要简单。
 
-例如一个如下的简单标记文本：
+例如一个如下的简单标识文本：
 
 ```
 <main class="gallery">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg">  <img src="/sample.jpg"></main>
@@ -32,41 +32,41 @@
 
 `main.gallery` 里有十张图片。
 
-我们要用  `main.gallery`  排列在可见屏幕上。
+假定  `main.gallery`  覆盖整个可见屏幕。
 
 ```
 .gallery {   min-height: 100vh}
 ```
 
-#### 有关图片的简单提示
+#### 有关图片的快速标记
 
-图片默认是有宽高的  `inline-block`  元素。除非有限定大小，例如图片太大不能排列在一行，否则他们都会排列在一行。
+图片默认是一个  `inline-block`  元素，他们有宽高。除非有限定大小，例如图片太大不能排列在一行，否则他们都会排列在一行。
 
 #### 起始点
 
-所有图片放在一起的显示效果如下：
+把所有图片放在一起，上面的标识文本显示效果如下：
 
 ![](https://cdn-media-1.freecodecamp.org/images/s2ntfDqrLewl66sGtavdhgQybTyD2JX520r2)
 
-10张宽高不变地排列在一起，合适的时候换行，顺序排放 ;)
+10张图片按照原来的宽高排列在一起，在合适的时候换行，并按顺序排放 ;)
 
-现在，看下Flexbox的效果:
+现在，看下 Flexbox 的效果:
 
 ```
 .gallery {    display: flex }
 ```
 
-在这点上，图片的默认属性已经发生改变。他们从  `inline-block`  布局变成了  `flex-items.`
+现在，图片的默认属性已经发生改变。他们从  `inline-block`  布局变成了  `flex-items.`
 
-由于  `.gallery`  里的Flexbox布局，里面的图片会被压缩排列在一行内，而且他们会被纵向拉伸称这样：
+由于  `.gallery`  里的Flexbox布局，里面的图片会被压缩排列在一行内，而且他们会被纵向拉伸成这样：
 
 ![](https://cdn-media-1.freecodecamp.org/images/sEzCWC3d-xoorKjDGf8TMdq6-ZxtOFMQjIST)
 
-图片都被纵向拉伸挤在一行内，不能更丑 :(
+图片都被纵向拉伸，并且挤在一行内，不能更丑 :(
 
-这就是Flexbox布局的默认展示方式:
+这就是由于 Flexbox 布局的默认展示方式:
 
-1.  将所有的子元素压在一行内，不换行。
+1\.  将所有的子元素压在一行内，不换行。
 
 这并不适用于图片库，因此我们可以这样改变：
 
@@ -74,13 +74,13 @@
 .gallery {    flex-wrap: wrap}
 ```
 
-这样所有的元素会在合适的时候换行，多行排列。
+这样所有的元素会在适当的位置换行成多行排列。
 
 ![](https://cdn-media-1.freecodecamp.org/images/JGAnqvkIeN-q8vh1beADx0XUrUE6SEZkGQFp)
 
-因为wrap值的改变，图片都换行排列
+因为wrap值的改变，现在图片换行排列
 
-2\. 现在图片有换行，但是仍然纵向拉伸。我们当然不想要这样扭曲的布局。
+2\. 现在图片有换行，但是仍然被纵向拉伸。我们当然不想要这样变形的布局。
 
   `stretch`  显示是因为  `flex`  里默认的  `align-items`  值。
 
@@ -100,17 +100,17 @@ align-items: stretch
 
 ![](https://cdn-media-1.freecodecamp.org/images/02VgeT3SyoxuWFwkqyD1pzEjFzUjMH160mn0)
 
-现在图片都是没有扭曲展示，这也很像我们在使用Flexbox之前的效果。
+现在图片都没有变形。这才是我们在使用Flexbox之前想要的效果。
 
-Now we have our Flexbox powered gallery.现在我们就要开始用Flexbox来强大图片集。
+现在我们就有了使用 Flexbox 的强大图片集。
 
-#### 使用Flexbox的优点
+#### 使用 Flexbox 的优点
 
-此刻Flexbox似乎没展现出什么优势，图片还是像使用  **Flexbox**  之前一样。
+此刻 Flexbox 似乎没展现出什么优势，图片还是像使用  **Flexbox**  之前一样。
 
-除了能得到一个免费的响应式图片集外，使用Flexbox的另一个优势就是他带来的对齐选项。
+除了能得到一个免费的响应式图片集外，使用 Flexbox 的另一个优势就是他的对齐选项。
 
-还记得flex容器  `.gallery`  设定的样式`flex-direction: row`  `justify-content: flex-start`  和  `align-items: flex-start.`
+还记得 flex 容器  `.gallery`  设定的样式 `flex-direction: row`  `justify-content: flex-start`  和  `align-items: flex-start.`
 
 如下所示，改变默认值，我们就可以立马改变图片库的布局。
 
@@ -120,7 +120,7 @@ Now we have our Flexbox powered gallery.现在我们就要开始用Flexbox来强
 
 ![](https://cdn-media-1.freecodecamp.org/images/etSBjIv9EwausQZC8PCe3tdHj0JovaLXkNvs)
 
-图片在水平上完美居中。
+图片在水平方向上完美居中。
 
 如上所示，这会让图片水平居中。
 
@@ -130,19 +130,19 @@ Now we have our Flexbox powered gallery.现在我们就要开始用Flexbox来强
 
 ![](https://cdn-media-1.freecodecamp.org/images/jSx35Bma2fYhAISiEg0B3TcZanxoy0hPOb8D)
 
-再进一步，我们可以让图片完美水平对齐（无论是水平还是垂直）
+再进一步，我们可以让图片完美居中对齐（无论是水平还是垂直）
 
 如上所示，这可以让图片在  `.gallery` 内水平和垂直都居中。
 
 你可以通过Flexbox的布局方式随意选择你想要的对齐选项。
 
-你可以通过  [CodePen][4]查看Flexbox图片库的实时布局效果。
+也可以在  [CodePen][4]查看Flexbox图片库的实时布局效果。
 
 ### 例2：如何通过Flexbox布局卡片 
 
 卡片在网上很流行，无论是Google, Twitter 还是 Pinterest，每个网站都在使用卡片。
 
-卡片是一种在大小可变容器内组合相关信息的页面设计方式，视觉上很像一种玩的卡片。
+卡片是一种在弹性容器内组合相关信息的页面设计方式，视觉上很像一种玩的卡片。
 
 使用卡片有很多好的地方，其中一个常用的就是臭名昭著的价格表。
 
@@ -152,9 +152,9 @@ Now we have our Flexbox powered gallery.现在我们就要开始用Flexbox来强
 
 让我们来建一个。
 
-#### 标记
+#### 标识文本
 
-我们给每个卡片设定一个如下的标记：
+我们给每个卡片设定一个如下的标识：
 
 ```
 <section class="card">  <header>  </header>
@@ -176,7 +176,7 @@ Now we have our Flexbox powered gallery.现在我们就要开始用Flexbox来强
 .cards {   min-height: 100vh}
 ```
 
-#### 建立Flexbox布局
+#### 建立 Flexbox 布局
 
 下面的代码块新建了一个在  `.cards` 里面的Flexbox布局样式。
 
@@ -184,7 +184,7 @@ Now we have our Flexbox powered gallery.现在我们就要开始用Flexbox来强
 .cards {  display: flex;  flex-wrap: wrap}
 ```
 
-如果你还记得上一个例子，  `flex-wrap`  可以让  `flex-items`  换行。
+如果你还记得上一个例子，  `flex-wrap`  可以让  `flex-items`  元素换行。
 
 由于子元素排列需要更大的宽度，所以子元素不能在父元素内排列时就会换行。
 
@@ -263,7 +263,7 @@ align-items: center; justify-content: center
 -   网格单元格要平均布局并充满整行。
 -   单元格高度一致。
 
-使用Flexbox很容易实现这个效果，看下面这个标记文本：
+使用Flexbox很容易实现这个效果，看下面这个标识文本：
 
 ```
 <div class="row">  <div class="row_cell">1</div></div>
@@ -373,7 +373,7 @@ flex: 1  === flex: 1 1 0
 
 应用.row\_cell — top 类可以让特定的元素在  `row`  内靠顶部对齐。
 
-你也需要在标记文本中给特定元素加上这个类。看文本中第一个  `div`  子元素的写法：
+你也需要在标识文本中给特定元素加上这个类。看文本中第一个  `div`  子元素的写法：
 
 ```
 <div class="row">  <div class="row_cell row_cell--top"></div>  <div class="row_cell"></div>  <div class="row_cell"></div></div>
@@ -475,15 +475,15 @@ flex: 1  === flex: 1 1 0
 
 我们开始。
 
-#### 标记语言
+#### 标识语言
 
-看下下面这个基本的标记语言：
+看下下面这个基本的标识语言：
 
 ```
 <body>  <header>Header</header>  <main>    <article>Article</article>    <nav>Nav</nav>    <aside>Aside</aside>  </main>  <footer>Footer</footer></body>
 ```
 
-其中，圣杯布局遵循了一个特殊的规则，Among others, there is a particular rule the holy grail adheres to. 这个规则inspired上面的标记语言：
+其中，圣杯布局遵循了一个特殊的规则，Among others, there is a particular rule the holy grail adheres to. 这个规则inspired上面的标识语言：
 
 中间的那列  `article`  应该在 `nav`  和  `aside`两个侧边栏之前显示出来。
 
@@ -636,7 +636,7 @@ main {  flex: 1}
 
 Tweet 和 Facebook 上发布的例子
 
-看下下面这个标记语言：
+看下下面这个标识语言：
 
 ```
 <div class="media">  <img class="media-object" src="/pic.jpg">  <div class="media-body">    <h3 class="media-heading"> Header </h3>    <p></p>  </div></div>
